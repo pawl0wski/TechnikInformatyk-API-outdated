@@ -14,6 +14,7 @@ var lock = &sync.Mutex{}
 type Cache struct {
 	Exams     []structs.Exam
 	Questions []structs.Question
+	Images    map[string][]byte
 }
 
 var singleInstance *Cache
@@ -37,8 +38,18 @@ func (c Cache) GetQuestions() []structs.Question {
 	return c.Questions
 }
 
+func (c Cache) GetImage(questionUuid string) []byte {
+	return c.Images[questionUuid]
+}
+
 func (c *Cache) UpdateCache(backendDatabase *sql.DB) {
 	c.Exams = db.GetExams(backendDatabase)
 	c.Questions = db.GetQuestions(backendDatabase)
+	c.Images = map[string][]byte{}
+	for i := range c.Questions {
+		if c.Questions[i].HaveImage {
+			c.Images[c.Questions[i].Uuid] = db.GetImage(backendDatabase, c.Questions[i].Uuid)
+		}
+	}
 	log.Println("Cache updated")
 }

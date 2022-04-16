@@ -23,6 +23,7 @@ func main() {
 	// Initialize routes
 	server.GET("/api/exams", routes.Exams)
 	server.GET("/api/questions", routes.Questions)
+	server.GET("/api/image/:questionUuid", routes.Image)
 
 	// Run server
 	server.Run()
