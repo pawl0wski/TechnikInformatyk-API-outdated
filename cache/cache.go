@@ -28,6 +28,10 @@ func GetCacheInstance() *Cache {
 	return singleInstance
 }
 
+func (c Cache) GetExams() []structs.Exam {
+	return c.Exams
+}
+
 func (c *Cache) UpdateCache(backendDatabase *sql.DB) {
 	c.Exams = db.GetExams(backendDatabase, true)
 	log.Println("Cache updated")

@@ -11,5 +11,6 @@ func main() {
 	// Initialize database
 	backendDatabase := db.OpenDb("db.sqlite3")
 	// Initialize and update cache
-	cache.GetCacheInstance().UpdateCache(backendDatabase)
+	cacheInstance := cache.GetCacheInstance()
+	cacheInstance.UpdateCache(backendDatabase)
 }
