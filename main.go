@@ -36,6 +36,7 @@ func main() {
 	server.GET("/api/exams", routes.Exams)
 	server.GET("/api/questions", routes.Questions)
 	server.GET("/api/image/:questionUuid", routes.Image)
+	server.GET("/api/databaseVersion", routes.DatabaseVersion)
 
 	// Run server
 	server.Run(fmt.Sprintf(":%s", os.Getenv("SERVER_PORT")))

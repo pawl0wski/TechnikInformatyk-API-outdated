@@ -10,11 +10,12 @@ import (
 var lock = &sync.Mutex{}
 
 type Cache struct {
-	Exams        []structs.Exam
-	Questions    []structs.Question
-	Images       map[string][]byte
-	CacheEnabled bool
-	Database     *sql.DB
+	Exams           []structs.Exam
+	Questions       []structs.Question
+	Images          map[string][]byte
+	CacheEnabled    bool
+	Database        *sql.DB
+	DatabaseVersion structs.DatabaseVersion
 }
 
 var singleInstance *Cache

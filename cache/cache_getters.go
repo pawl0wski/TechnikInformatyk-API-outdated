@@ -28,3 +28,11 @@ func (c Cache) GetImage(questionUuid string) []byte {
 		return db.GetImage(c.Database, questionUuid)
 	}
 }
+
+func (c Cache) GetDatabaseVersion() structs.DatabaseVersion {
+	if isCacheEnabled() {
+		return c.DatabaseVersion
+	} else {
+		return db.CalculateDatabaseVersion()
+	}
+}

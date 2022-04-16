@@ -18,6 +18,7 @@ func (c *Cache) UpdateCache(backendDatabase *sql.DB) {
 				c.Images[c.Questions[i].Uuid] = db.GetImage(backendDatabase, c.Questions[i].Uuid)
 			}
 		}
+		c.DatabaseVersion = db.CalculateDatabaseVersion()
 		log.Println("Cache updated")
 	} else {
 		log.Println("Cache is disabled in config. Ignoring update")
