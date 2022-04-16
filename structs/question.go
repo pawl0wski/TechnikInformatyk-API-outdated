@@ -3,7 +3,7 @@ package structs
 type Question struct {
 	Uuid         string `json:"uuid"`
 	Content      string `json:"content"`
-	ImageId      int64  `json:"imageId"`
+	HaveImage    bool   `json:"haveImage"`
 	AnswerA      string `json:"answerA"`
 	AnswerB      string `json:"answerB"`
 	AnswerC      string `json:"answerC"`
