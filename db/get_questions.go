@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"log"
+	"strings"
 
 	"github.com/Jeboczek/TechnikInformatykBackend/structs"
 )
@@ -30,19 +31,19 @@ func convertDatabaseAnswersToQuestionAnswers(answers string, question *structs.Q
 	}
 }
 
-// func getUuidsFromCell(cell string) []string {
-// 	uuids := []string{}
-// 	if strings.Contains(cell, ",") {
-// 		uuids = strings.Split(cell, ",")
-// 	} else {
-// 		uuids = append(uuids, cell)
-// 	}
-// 	return uuids
-// }
+func getUuidsFromCell(cell string) []string {
+	uuids := []string{}
+	if strings.Contains(cell, ",") {
+		uuids = strings.Split(cell, ",")
+	} else {
+		uuids = append(uuids, cell)
+	}
+	return uuids
+}
 
-func GetQuestions(backendDatabase *sql.DB, examUuid string) []structs.Question {
+func GetQuestions(backendDatabase *sql.DB) []structs.Question {
 	questions := []structs.Question{}
-	rows, err := backendDatabase.Query("SELECT uuid, content, IIF(img is not NULL, 1, 0) as haveImage, answers FROM question WHERE examUuids LIKE '%" + examUuid + "%' ")
+	rows, err := backendDatabase.Query("SELECT uuid, content, IIF(img is not NULL, 1, 0) as haveImage, answers, examUuids FROM question")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -53,11 +54,12 @@ func GetQuestions(backendDatabase *sql.DB, examUuid string) []structs.Question {
 			content        string
 			haveImage      int8
 			databaseAnswer string
+			examUuids      string
 		)
 
 		question := structs.Question{}
 
-		err := rows.Scan(&uuid, &content, &haveImage, &databaseAnswer)
+		err := rows.Scan(&uuid, &content, &haveImage, &databaseAnswer, &examUuids)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -66,6 +68,7 @@ func GetQuestions(backendDatabase *sql.DB, examUuid string) []structs.Question {
 		question.Content = content
 		question.HaveImage = (haveImage == 1)
 		convertDatabaseAnswersToQuestionAnswers(databaseAnswer, &question)
+		question.ExamUuids = getUuidsFromCell(examUuids)
 
 		questions = append(questions, question)
 	}

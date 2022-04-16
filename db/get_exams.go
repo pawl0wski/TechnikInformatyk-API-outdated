@@ -7,7 +7,7 @@ import (
 	"github.com/Jeboczek/TechnikInformatykBackend/structs"
 )
 
-func GetExams(backendDatabase *sql.DB, alsoReadQuestion bool) []structs.Exam {
+func GetExams(backendDatabase *sql.DB) []structs.Exam {
 	row, err := backendDatabase.Query("SELECT uuid, name, description, icon FROM exam")
 	if err != nil {
 		log.Fatalln(err)
@@ -29,16 +29,8 @@ func GetExams(backendDatabase *sql.DB, alsoReadQuestion bool) []structs.Exam {
 			log.Fatalln(err)
 		}
 
-		// Get questions
-		questions := []structs.Question{}
-
-		// If alsoReadQuestion is true, get questions
-		if alsoReadQuestion {
-			questions = GetQuestions(backendDatabase, uuid)
-		}
-
 		// Create a new exam and append it to the slice.
-		exam := structs.Exam{Uuid: uuid, Name: name, Description: description, Icon: icon, Questions: questions}
+		exam := structs.Exam{Uuid: uuid, Name: name, Description: description, Icon: icon}
 		exams = append(exams, exam)
 	}
 	return exams

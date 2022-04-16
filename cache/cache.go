@@ -12,7 +12,8 @@ import (
 var lock = &sync.Mutex{}
 
 type Cache struct {
-	Exams []structs.Exam
+	Exams     []structs.Exam
+	Questions []structs.Question
 }
 
 var singleInstance *Cache
@@ -32,7 +33,12 @@ func (c Cache) GetExams() []structs.Exam {
 	return c.Exams
 }
 
+func (c Cache) GetQuestions() []structs.Question {
+	return c.Questions
+}
+
 func (c *Cache) UpdateCache(backendDatabase *sql.DB) {
-	c.Exams = db.GetExams(backendDatabase, true)
+	c.Exams = db.GetExams(backendDatabase)
+	c.Questions = db.GetQuestions(backendDatabase)
 	log.Println("Cache updated")
 }
