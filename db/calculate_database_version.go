@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Jeboczek/TechnikInformatykBackend/structs"
+	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
 )
 
 func CalculateDatabaseVersion() structs.DatabaseVersion {

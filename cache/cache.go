@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"sync"
 
-	"github.com/Jeboczek/TechnikInformatykBackend/structs"
+	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
 )
 
 var lock = &sync.Mutex{}

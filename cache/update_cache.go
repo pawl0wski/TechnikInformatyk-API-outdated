@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/Jeboczek/TechnikInformatykBackend/db"
+	"github.com/jpawlowskii/TechnikInformatykBackend/db"
 )
 
 func (c *Cache) UpdateCache(backendDatabase *sql.DB) {

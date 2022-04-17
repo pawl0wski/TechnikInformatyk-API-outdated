@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"github.com/Jeboczek/TechnikInformatykBackend/cache"
 	"github.com/gin-gonic/gin"
+	"github.com/jpawlowskii/TechnikInformatykBackend/cache"
 )
 
 func Exams(c *gin.Context) {

@@ -6,7 +6,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/Jeboczek/TechnikInformatykBackend/structs"
+	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
 )
 
 type databaseQuestionAnswers struct {

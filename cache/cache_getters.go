@@ -1,8 +1,8 @@
 package cache
 
 import (
-	"github.com/Jeboczek/TechnikInformatykBackend/db"
-	"github.com/Jeboczek/TechnikInformatykBackend/structs"
+	"github.com/jpawlowskii/TechnikInformatykBackend/db"
+	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
 )
 
 func (c Cache) GetExams() []structs.Exam {

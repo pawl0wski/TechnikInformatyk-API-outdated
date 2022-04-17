@@ -5,12 +5,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/Jeboczek/TechnikInformatykBackend/cache"
-	"github.com/Jeboczek/TechnikInformatykBackend/db"
-	"github.com/Jeboczek/TechnikInformatykBackend/routes"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/jpawlowskii/TechnikInformatykBackend/cache"
+	"github.com/jpawlowskii/TechnikInformatykBackend/db"
+	"github.com/jpawlowskii/TechnikInformatykBackend/routes"
 
 	_ "github.com/mattn/go-sqlite3"
 )
