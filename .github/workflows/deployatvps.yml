@@ -1,0 +1,25 @@
+name: Deploy at VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-go@v3
+        with:
+          go-version: "1.17.8"
+      - run: go mod download
+      - run: go build main.go
+      - run: mkdir dist
+      - run: mv main dist/
+      - uses: wangyucode/sftp-upload-action@main
+        with:
+          host: "${{ secrets.SFTP_ADDRESS }}"
+          username: "${{ secrets.SFTP_USERNAME }}"
+          password: "${{ secrets.SFTP_PASSWORD }}"
+          localDir: "dist"
+          remoteDir: "/home/${{ secrets.SFTP_USERNAME }}/bin"
