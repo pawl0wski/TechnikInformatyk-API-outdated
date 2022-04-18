@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/jpawlowskii/TechnikInformatykBackend/cache"
+	"github.com/jpawlowskii/TechnikInformatykBackend/cdn"
 	"github.com/jpawlowskii/TechnikInformatykBackend/db"
 	"github.com/jpawlowskii/TechnikInformatykBackend/routes"
 
@@ -46,6 +47,7 @@ func main() {
 	server := gin.Default()
 
 	setupCache()
+	cdn.RebuildCdn()
 	setupRoutes(server)
 
 	// Run server
