@@ -14,7 +14,7 @@ func GetImage(backendDatabase *sql.DB, questionUuid string) []byte {
 	row.Next()
 	err = row.Scan(&image)
 	if err != nil {
-		log.Fatalln(err)
+		return []byte{}
 	}
 	return image
 }

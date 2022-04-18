@@ -7,5 +7,11 @@ import (
 
 func Image(c *gin.Context) {
 	cacheInstance := cache.GetCacheInstance()
-	c.Data(200, "image/png", cacheInstance.GetImage(c.Param("questionUuid")))
+	image := cacheInstance.GetImage(c.Param("questionUuid"))
+
+	if len(image) != 0 {
+		c.Data(200, "image/png", image)
+	} else {
+		NotFound(c)
+	}
 }
