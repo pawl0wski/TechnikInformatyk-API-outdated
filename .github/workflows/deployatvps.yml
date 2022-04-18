@@ -22,4 +22,10 @@ jobs:
           username: "${{ secrets.SFTP_USERNAME }}"
           password: "${{ secrets.SFTP_PASSWORD }}"
           localDir: "dist"
-          remoteDir: "/home/${{ secrets.SFTP_USERNAME }}/bin"
+          remoteDir: "/home/${{ secrets.SFTP_USERNAME }}/bin/"
+      - uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: "chmod u+x /home/${{ secrets.SFTP_USERNAME }}/bin/main && sudo systemctl restart ${{ secrets.SFTP_USERNAME }}"
+          host: "${{ secrets.SFTP_ADDRESS }}"
+          username: "${{ secrets.SFTP_USERNAME }}"
+          password: "${{ secrets.SFTP_PASSWORD }}"
