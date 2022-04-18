@@ -26,7 +26,7 @@ func convertDatabaseAnswersToQuestionAnswers(answers string, question *structs.Q
 	// Convert database correct answer to question correct answer
 	for i := 0; i < 4; i++ {
 		if databaseAnswers[i].Correct {
-			question.CorretAnswer = int8(i)
+			question.CorrectAnswer = int8(i)
 		}
 	}
 }
