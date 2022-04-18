@@ -23,19 +23,21 @@ func getQuestionsWithImages() []structs.Question {
 }
 
 func RebuildCdn() {
-	cacheInstance := cache.GetCacheInstance()
+	if os.Getenv("ENABLE_CDN") == "1" {
+		cacheInstance := cache.GetCacheInstance()
 
-	questions := getQuestionsWithImages()
-	for _, question := range questions {
+		questions := getQuestionsWithImages()
+		for _, question := range questions {
 
-		filePath := path.Join(os.Getenv("CDN_PATH"), question.Uuid)
-		if _, err := os.Stat(filePath); err != nil {
-			image := cacheInstance.GetImage(question.Uuid)
-			err := os.WriteFile(filePath, image, 0644)
-			if err != nil {
-				log.Fatalln(err)
+			filePath := path.Join(os.Getenv("CDN_PATH"), question.Uuid)
+			if _, err := os.Stat(filePath); err != nil {
+				image := cacheInstance.GetImage(question.Uuid)
+				err := os.WriteFile(filePath, image, 0644)
+				if err != nil {
+					log.Fatalln(err)
+				}
 			}
 		}
+		log.Println("CDN rebuilded")
 	}
-	log.Println("CDN rebuilded")
 }
