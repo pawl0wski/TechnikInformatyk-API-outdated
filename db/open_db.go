@@ -2,11 +2,17 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 )
 
-func OpenDb(fileName string) *sql.DB {
-	db, err := sql.Open("sqlite3", fileName)
+func OpenDbWithDefaultConnectionPath() *sql.DB {
+	return OpenDb(GetDbConnectionPath())
+}
+
+func OpenDb(connectionPath string) *sql.DB {
+	fmt.Println(connectionPath)
+	db, err := sql.Open("mysql", connectionPath)
 	if err != nil {
 		log.Fatalln(err)
 	}

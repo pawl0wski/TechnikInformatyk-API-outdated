@@ -12,7 +12,7 @@ import (
 	"github.com/jpawlowskii/TechnikInformatykBackend/db"
 	"github.com/jpawlowskii/TechnikInformatykBackend/routes"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func loadDotFile() {
@@ -34,7 +34,7 @@ func setupRoutes(server *gin.Engine) {
 
 func setupCache() {
 	// Initialize database
-	backendDatabase := db.OpenDb("db.sqlite3")
+	backendDatabase := db.OpenDbWithDefaultConnectionPath()
 	// Initialize and update cache
 	cacheInstance := cache.GetCacheInstance()
 	cacheInstance.UpdateCache(backendDatabase)

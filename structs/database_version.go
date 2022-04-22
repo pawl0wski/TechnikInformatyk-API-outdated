@@ -1,5 +1,5 @@
 package structs
 
 type DatabaseVersion struct {
-	Version string `json:"version"`
+	Version uint32 `json:"version"`
 }

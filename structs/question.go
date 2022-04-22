@@ -8,6 +8,6 @@ type Question struct {
 	AnswerB       string   `json:"answerB"`
 	AnswerC       string   `json:"answerC"`
 	AnswerD       string   `json:"answerD"`
-	CorrectAnswer int8     `json:"correctAnswer"`
+	CorrectAnswer uint8    `json:"correctAnswer"`
 	ExamUuids     []string `json:"examUuids"`
 }

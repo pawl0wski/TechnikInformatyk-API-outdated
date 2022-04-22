@@ -33,6 +33,6 @@ func (c Cache) GetDatabaseVersion() structs.DatabaseVersion {
 	if isCacheEnabled() {
 		return c.DatabaseVersion
 	} else {
-		return db.CalculateDatabaseVersion()
+		return db.CalculateDatabaseVersion(c.Database)
 	}
 }
