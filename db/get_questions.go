@@ -37,7 +37,7 @@ func GetQuestions(backendDatabase *sql.DB) []structs.Question {
 			answerB   string
 			answerC   string
 			answerD   string
-			correct   int8
+			correct   uint8
 		)
 
 		question := structs.Question{}
@@ -50,6 +50,11 @@ func GetQuestions(backendDatabase *sql.DB) []structs.Question {
 		question.Uuid = uuid
 		question.Content = content
 		question.HaveImage = (haveImage == 1)
+		question.AnswerA = answerA
+		question.AnswerB = answerB
+		question.AnswerC = answerC
+		question.AnswerD = answerD
+		question.CorrectAnswer = correct
 		question.ExamUuids = GetExamsForQuestion(backendDatabase, uuid)
 
 		questions = append(questions, question)
