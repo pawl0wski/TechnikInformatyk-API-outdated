@@ -9,6 +9,7 @@ import (
 
 func calculateChecksumOfTable(backendDatabase *sql.DB, tableName string) uint32 {
 	row, err := backendDatabase.Query("CHECKSUM TABLE " + tableName)
+	defer row.Close()
 	if err != nil {
 		log.Fatalln(err)
 	}

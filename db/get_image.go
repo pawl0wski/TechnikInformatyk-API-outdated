@@ -7,6 +7,7 @@ import (
 
 func GetImage(backendDatabase *sql.DB, questionUuid string) []byte {
 	row, err := backendDatabase.Query("SELECT image FROM question WHERE uuid = ?", questionUuid)
+	defer row.Close()
 	if err != nil {
 		log.Fatalln(err)
 	}

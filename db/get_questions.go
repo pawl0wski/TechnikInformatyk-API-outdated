@@ -3,59 +3,32 @@ package db
 import (
 	"database/sql"
 	"log"
+	"strings"
 
 	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
 )
 
-func GetExamsForQuestion(backendDatabase *sql.DB, questionUuid string) []string {
-	rows, err := backendDatabase.Query("SELECT examUUID FROM questionToExam WHERE questionUUID = ?;", questionUuid)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	examUuids := []string{}
-	for rows.Next() {
-		var examUuid string
-		rows.Scan(&examUuid)
-		examUuids = append(examUuids, examUuid)
-	}
-	return examUuids
+func parseExamResponseFromDatabase(examUuids string) []string {
+	return strings.Split(examUuids, ",")
 }
 
 func GetQuestions(backendDatabase *sql.DB) []structs.Question {
 	questions := []structs.Question{}
-	rows, err := backendDatabase.Query("SELECT uuid, content, IF(image is not NULL, 1, 0) as haveImage, answerA, answerB, answerC, answerD, correct FROM question")
+	rows, err := backendDatabase.Query("SELECT uuid, content, IF(image is not NULL, 1, 0) as haveImage, answerA, answerB, answerC, answerD, correct, GROUP_CONCAT(questionToExam.examUUID) as examUuids FROM question INNER JOIN questionToExam on questionToExam.questionUUID = question.uuid GROUP BY question.uuid;")
 	if err != nil {
 		log.Fatalln(err)
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var (
-			uuid      string
-			content   string
-			haveImage int8
-			answerA   string
-			answerB   string
-			answerC   string
-			answerD   string
-			correct   uint8
-		)
-
+		var examUuids string
 		question := structs.Question{}
 
-		err := rows.Scan(&uuid, &content, &haveImage, &answerA, &answerB, &answerC, &answerD, &correct)
+		err := rows.Scan(&question.Uuid, &question.Content, &question.HaveImage, &question.AnswerA, &question.AnswerB, &question.AnswerC, &question.AnswerD, &question.CorrectAnswer, &examUuids)
 		if err != nil {
 			log.Fatalln(err)
 		}
 
-		question.Uuid = uuid
-		question.Content = content
-		question.HaveImage = (haveImage == 1)
-		question.AnswerA = answerA
-		question.AnswerB = answerB
-		question.AnswerC = answerC
-		question.AnswerD = answerD
-		question.CorrectAnswer = correct
-		question.ExamUuids = GetExamsForQuestion(backendDatabase, uuid)
+		question.ExamUuids = parseExamResponseFromDatabase(examUuids)
 
 		questions = append(questions, question)
 	}
