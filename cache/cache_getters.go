@@ -1,11 +1,17 @@
 package cache
 
 import (
+	"sync"
+
 	"github.com/pawl0wski/TechnikInformatykBackend/db"
 	"github.com/pawl0wski/TechnikInformatykBackend/model"
 )
 
+var getterLock = &sync.Mutex{}
+
 func (c Cache) GetExams() []model.Exam {
+	getterLock.Lock()
+	defer getterLock.Unlock()
 	if isCacheEnabled() {
 		return c.Exams
 	} else {
@@ -14,6 +20,8 @@ func (c Cache) GetExams() []model.Exam {
 }
 
 func (c Cache) GetQuestions() ([]model.Question, error) {
+	getterLock.Lock()
+	defer getterLock.Unlock()
 	if isCacheEnabled() {
 		return c.Questions, nil
 	} else {
@@ -26,6 +34,8 @@ func (c Cache) GetQuestions() ([]model.Question, error) {
 }
 
 func (c Cache) GetImage(questionUuid string) []byte {
+	getterLock.Lock()
+	defer getterLock.Unlock()
 	if isCacheEnabled() {
 		return c.Images[questionUuid]
 	} else {
@@ -34,6 +44,8 @@ func (c Cache) GetImage(questionUuid string) []byte {
 }
 
 func (c Cache) GetDatabaseVersion() model.DatabaseVersion {
+	getterLock.Lock()
+	defer getterLock.Unlock()
 	if isCacheEnabled() {
 		return c.DatabaseVersion
 	} else {
