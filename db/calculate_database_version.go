@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/model"
 )
 
 func calculateChecksumOfTable(backendDatabase *sql.DB, tableName string) uint32 {
@@ -32,7 +32,7 @@ func calculateChecksumOfTable(backendDatabase *sql.DB, tableName string) uint32 
 	return finalResult
 }
 
-func CalculateDatabaseVersion(backendDatabase *sql.DB) structs.DatabaseVersion {
+func CalculateDatabaseVersion(backendDatabase *sql.DB) model.DatabaseVersion {
 
 	var databaseChecksum uint32
 	tablesToCalculate := [3]string{"question", "exam", "questionToExam"}
@@ -40,5 +40,5 @@ func CalculateDatabaseVersion(backendDatabase *sql.DB) structs.DatabaseVersion {
 		databaseChecksum += calculateChecksumOfTable(backendDatabase, v)
 	}
 
-	return structs.DatabaseVersion{Version: databaseChecksum}
+	return model.DatabaseVersion{Version: databaseChecksum}
 }

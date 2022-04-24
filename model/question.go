@@ -1,4 +1,4 @@
-package structs
+package model
 
 type Question struct {
 	Uuid          string   `json:"uuid"`

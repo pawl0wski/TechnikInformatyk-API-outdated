@@ -2,10 +2,10 @@ package cache
 
 import (
 	"github.com/pawl0wski/TechnikInformatykBackend/db"
-	"github.com/pawl0wski/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/model"
 )
 
-func (c Cache) GetExams() []structs.Exam {
+func (c Cache) GetExams() []model.Exam {
 	if isCacheEnabled() {
 		return c.Exams
 	} else {
@@ -13,7 +13,7 @@ func (c Cache) GetExams() []structs.Exam {
 	}
 }
 
-func (c Cache) GetQuestions() ([]structs.Question, error) {
+func (c Cache) GetQuestions() ([]model.Question, error) {
 	if isCacheEnabled() {
 		return c.Questions, nil
 	} else {
@@ -33,7 +33,7 @@ func (c Cache) GetImage(questionUuid string) []byte {
 	}
 }
 
-func (c Cache) GetDatabaseVersion() structs.DatabaseVersion {
+func (c Cache) GetDatabaseVersion() model.DatabaseVersion {
 	if isCacheEnabled() {
 		return c.DatabaseVersion
 	} else {

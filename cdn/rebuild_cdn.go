@@ -7,14 +7,14 @@ import (
 	"path"
 
 	"github.com/pawl0wski/TechnikInformatykBackend/cache"
-	"github.com/pawl0wski/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/model"
 )
 
-func getQuestionsWithImages() []structs.Question {
+func getQuestionsWithImages() []model.Question {
 	cacheInstance := cache.GetCacheInstance()
 	questions, _ := cacheInstance.GetQuestions()
 
-	questionsToReturn := []structs.Question{}
+	questionsToReturn := []model.Question{}
 	for _, question := range questions {
 		if question.HaveImage {
 			questionsToReturn = append(questionsToReturn, question)

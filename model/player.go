@@ -1,4 +1,4 @@
-package structs
+package model
 
 type Player struct {
 	Uuid string `json:"uuid"`

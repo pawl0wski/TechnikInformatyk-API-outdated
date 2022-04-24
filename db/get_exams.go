@@ -4,18 +4,18 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/model"
 )
 
-func GetExams(backendDatabase *sql.DB) []structs.Exam {
+func GetExams(backendDatabase *sql.DB) []model.Exam {
 	row, err := backendDatabase.Query("SELECT uuid, name, description, icon FROM exam")
 	if err != nil {
 		log.Fatalln(err)
 	}
 	defer row.Close()
-	var exams []structs.Exam = []structs.Exam{}
+	var exams []model.Exam = []model.Exam{}
 	for row.Next() {
-		var exam structs.Exam
+		var exam model.Exam
 		// Scan the row into the exam declared above.
 		err := row.Scan(&exam.Uuid, &exam.Name, &exam.Description, &exam.Icon)
 

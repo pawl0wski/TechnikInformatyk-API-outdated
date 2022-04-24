@@ -4,18 +4,18 @@ import (
 	"database/sql"
 	"sync"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/model"
 )
 
 var lock = &sync.Mutex{}
 
 type Cache struct {
-	Exams           []structs.Exam
-	Questions       []structs.Question
+	Exams           []model.Exam
+	Questions       []model.Question
 	Images          map[string][]byte
 	CacheEnabled    bool
 	Database        *sql.DB
-	DatabaseVersion structs.DatabaseVersion
+	DatabaseVersion model.DatabaseVersion
 }
 
 var singleInstance *Cache
