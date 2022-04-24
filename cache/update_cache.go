@@ -11,7 +11,7 @@ func (c *Cache) UpdateCache(backendDatabase *sql.DB) {
 	c.Database = backendDatabase
 	if isCacheEnabled() {
 		c.Exams = db.GetExams(backendDatabase)
-		c.Questions = db.GetQuestions(backendDatabase)
+		c.Questions, _ = db.GetQuestions(backendDatabase)
 		c.Images = map[string][]byte{}
 		for i := range c.Questions {
 			if c.Questions[i].HaveImage {

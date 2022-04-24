@@ -12,7 +12,7 @@ import (
 
 func getQuestionsWithImages() []structs.Question {
 	cacheInstance := cache.GetCacheInstance()
-	questions := cacheInstance.GetQuestions()
+	questions, _ := cacheInstance.GetQuestions()
 
 	questionsToReturn := []structs.Question{}
 	for _, question := range questions {

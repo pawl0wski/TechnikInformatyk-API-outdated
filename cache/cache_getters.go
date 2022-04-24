@@ -13,11 +13,15 @@ func (c Cache) GetExams() []structs.Exam {
 	}
 }
 
-func (c Cache) GetQuestions() []structs.Question {
+func (c Cache) GetQuestions() ([]structs.Question, error) {
 	if isCacheEnabled() {
-		return c.Questions
+		return c.Questions, nil
 	} else {
-		return db.GetQuestions(c.Database)
+		questions, err := db.GetQuestions(c.Database)
+		if err != nil {
+			return nil, err
+		}
+		return questions, err
 	}
 }
 

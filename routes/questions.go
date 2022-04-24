@@ -7,7 +7,11 @@ import (
 
 func Questions(c *gin.Context) {
 	cacheInstance := cache.GetCacheInstance()
-	questions := cacheInstance.GetQuestions()
-	c.JSON(200, questions)
+	questions, err := cacheInstance.GetQuestions()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Internal server error"})
+	} else {
+		c.JSON(200, questions)
+	}
 	questions = nil
 }
