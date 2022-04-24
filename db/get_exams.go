@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/model"
+	"github.com/pawl0wski/technikinformatyk-backend/model"
 )
 
 func GetExams(backendDatabase *sql.DB) []model.Exam {

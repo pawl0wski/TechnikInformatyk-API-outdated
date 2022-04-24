@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"strings"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/model"
+	"github.com/pawl0wski/technikinformatyk-backend/model"
 )
 
 func parseExamResponseFromDatabase(examUuids string) []string {

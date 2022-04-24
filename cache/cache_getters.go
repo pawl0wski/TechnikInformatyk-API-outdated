@@ -3,8 +3,8 @@ package cache
 import (
 	"sync"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/db"
-	"github.com/pawl0wski/TechnikInformatykBackend/model"
+	"github.com/pawl0wski/technikinformatyk-backend/db"
+	"github.com/pawl0wski/technikinformatyk-backend/model"
 )
 
 var getterLock = &sync.Mutex{}

@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pawl0wski/TechnikInformatykBackend/cache"
+	"github.com/pawl0wski/technikinformatyk-backend/cache"
 )
 
 func Questions(c *gin.Context) {

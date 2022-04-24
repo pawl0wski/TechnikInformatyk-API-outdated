@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"sync"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/model"
+	"github.com/pawl0wski/technikinformatyk-backend/model"
 )
 
 var lock = &sync.Mutex{}

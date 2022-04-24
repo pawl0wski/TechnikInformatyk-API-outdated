@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/pawl0wski/TechnikInformatykBackend/cache"
-	"github.com/pawl0wski/TechnikInformatykBackend/model"
+	"github.com/pawl0wski/technikinformatyk-backend/cache"
+	"github.com/pawl0wski/technikinformatyk-backend/model"
 )
 
 func getQuestionsWithImages() []model.Question {
