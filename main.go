@@ -7,10 +7,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/jpawlowskii/TechnikInformatykBackend/cache"
-	"github.com/jpawlowskii/TechnikInformatykBackend/cdn"
-	"github.com/jpawlowskii/TechnikInformatykBackend/db"
-	"github.com/jpawlowskii/TechnikInformatykBackend/routes"
+	"github.com/pawl0wski/TechnikInformatykBackend/cache"
+	"github.com/pawl0wski/TechnikInformatykBackend/cdn"
+	"github.com/pawl0wski/TechnikInformatykBackend/db"
+	"github.com/pawl0wski/TechnikInformatykBackend/routes"
 
 	_ "github.com/go-sql-driver/mysql"
 )

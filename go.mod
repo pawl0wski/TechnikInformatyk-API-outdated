@@ -1,4 +1,4 @@
-module github.com/jpawlowskii/TechnikInformatykBackend
+module github.com/pawl0wski/TechnikInformatykBackend
 
 go 1.17
 

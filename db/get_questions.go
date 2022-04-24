@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/structs"
 )
 
 func parseExamResponseFromDatabase(examUuids string) []string {

@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/jpawlowskii/TechnikInformatykBackend/cache"
-	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/cache"
+	"github.com/pawl0wski/TechnikInformatykBackend/structs"
 )
 
 func getQuestionsWithImages() []structs.Question {

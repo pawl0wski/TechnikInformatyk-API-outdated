@@ -7,8 +7,8 @@ import (
 	"path"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jpawlowskii/TechnikInformatykBackend/cache"
-	"github.com/jpawlowskii/TechnikInformatykBackend/cdn"
+	"github.com/pawl0wski/TechnikInformatykBackend/cache"
+	"github.com/pawl0wski/TechnikInformatykBackend/cdn"
 )
 
 func Image(c *gin.Context) {

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/structs"
 )
 
 func GetExams(backendDatabase *sql.DB) []structs.Exam {

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/jpawlowskii/TechnikInformatykBackend/structs"
+	"github.com/pawl0wski/TechnikInformatykBackend/structs"
 )
 
 func calculateChecksumOfTable(backendDatabase *sql.DB, tableName string) uint32 {
