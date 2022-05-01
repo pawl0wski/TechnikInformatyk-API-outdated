@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "00:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - pawl0wski
+    assignees:
+      - pawl0wski
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
