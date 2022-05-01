@@ -15,18 +15,24 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version: "1.17.8"
-      - run: go mod download
-      - run: go build main.go
-      - run: mkdir dist
-      - run: mv main dist/
-      - uses: wangyucode/sftp-upload-action@main
+      - name: "Download dependencies ⏳"
+        run: go mod download
+      - name: "Build go project 🔨"
+        run: go build main.go
+      - name: "Make dist/ folder 📁"
+        run: mkdir dist
+      - name: "Move builded project to dist/ 📁"
+        run: mv main dist/
+      - name: "Deploy builded project on VPS 🌐"
+        uses: wangyucode/sftp-upload-action@main
         with:
           host: "${{ secrets.SFTP_ADDRESS }}"
           username: "${{ secrets.SFTP_USERNAME }}"
           password: "${{ secrets.SFTP_PASSWORD }}"
           localDir: "dist"
           remoteDir: "/home/${{ secrets.SFTP_USERNAME }}/githubactions/"
-      - uses: garygrossgarten/github-action-ssh@release
+      - name: "Restart project's service on VPS 🔄"
+        uses: garygrossgarten/github-action-ssh@release
         with:
           command: "mv ~/githubactions/main ~/bin && chmod u+x ~/bin/main && sudo systemctl restart ${{ secrets.SFTP_USERNAME }}"
           host: "${{ secrets.SFTP_ADDRESS }}"
