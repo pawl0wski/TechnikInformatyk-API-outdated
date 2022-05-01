@@ -13,5 +13,4 @@ func Questions(c *gin.Context) {
 	} else {
 		c.JSON(200, questions)
 	}
-	questions = nil
 }
