@@ -2,29 +2,30 @@ package cdn
 
 import (
 	"os"
+	"strconv"
 	"testing"
 )
 
-func TestIsCdnEnabledIfNot(t *testing.T) {
-	env := os.Getenv("ENABLE_CDN")
-	if env != "" {
-		os.Setenv("ENABLE_CDN", "")
-	}
-	if IsCDNEnabled() {
-		t.Error("IsCDNEnabled returns true if CDN is disabled")
-	}
+type IsCDNEnabledResults struct {
+	env      string
+	expected bool
 }
 
-func TestIsCdnEnabledIfIsEnabled(t *testing.T) {
-	os.Setenv("ENABLE_CDN", "1")
-	if !IsCDNEnabled() {
-		t.Error("IsCDNEnabled returns false if CDN is enabled")
-	}
+var isCdnEnabledResults = []IsCDNEnabledResults{
+	{"", false},
+	{"0", false},
+	{"1", true},
+	{"true", true},
+	{"11", false},
+	{"-1", false},
 }
 
-func TestIsCdnEnabledIfIs0(t *testing.T) {
-	os.Setenv("ENABLE_CDN", "0")
-	if IsCDNEnabled() {
-		t.Error("IsCDNEnabled returns true if CDN is disabled")
+func TestIsCdnEnabled(t *testing.T) {
+	for _, test := range isCdnEnabledResults {
+		os.Setenv("ENABLE_CDN", test.env)
+		if result := IsCDNEnabled(); result != test.expected {
+			t.Errorf("IsCDNEnabled returns %s if ENV is %s", strconv.FormatBool(result), test.env)
+		}
 	}
+
 }
