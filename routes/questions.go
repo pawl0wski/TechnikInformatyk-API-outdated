@@ -2,12 +2,12 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pawl0wski/technikinformatyk-backend/cache"
+	dblocker "github.com/pawl0wski/technikinformatyk-backend/db_locker"
 )
 
 func Questions(c *gin.Context) {
-	cacheInstance := cache.GetCacheInstance()
-	questions, err := cacheInstance.GetQuestions()
+	dbLocker := dblocker.GetDBLockerInstance()
+	questions, err := dbLocker.GetQuestions()
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Internal server error"})
 	} else {

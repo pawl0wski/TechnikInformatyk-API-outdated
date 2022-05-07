@@ -6,13 +6,13 @@ import (
 	"os"
 	"path"
 
-	"github.com/pawl0wski/technikinformatyk-backend/cache"
+	dblocker "github.com/pawl0wski/technikinformatyk-backend/db_locker"
 	"github.com/pawl0wski/technikinformatyk-backend/model"
 )
 
 func getQuestionsWithImages() []model.Question {
-	cacheInstance := cache.GetCacheInstance()
-	questions, _ := cacheInstance.GetQuestions()
+	dbLocker := dblocker.GetDBLockerInstance()
+	questions, _ := dbLocker.GetQuestions()
 
 	questionsToReturn := []model.Question{}
 	for _, question := range questions {
@@ -25,14 +25,14 @@ func getQuestionsWithImages() []model.Question {
 
 func RebuildCdn() {
 	if IsCDNEnabled() {
-		cacheInstance := cache.GetCacheInstance()
+		dbLocker := dblocker.GetDBLockerInstance()
 
 		questions := getQuestionsWithImages()
 		for _, question := range questions {
 
 			filePath := path.Join(os.Getenv("CDN_PATH"), fmt.Sprintf("%s.png", question.Uuid))
 			if _, err := os.Stat(filePath); err != nil {
-				image := cacheInstance.GetImage(question.Uuid)
+				image := dbLocker.GetImage(question.Uuid)
 				err := os.WriteFile(filePath, image, 0644)
 				if err != nil {
 					log.Fatalln(err)

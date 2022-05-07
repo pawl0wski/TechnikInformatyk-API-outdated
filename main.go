@@ -7,9 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/pawl0wski/technikinformatyk-backend/cache"
 	"github.com/pawl0wski/technikinformatyk-backend/cdn"
 	"github.com/pawl0wski/technikinformatyk-backend/db"
+	dblocker "github.com/pawl0wski/technikinformatyk-backend/db_locker"
 	"github.com/pawl0wski/technikinformatyk-backend/routes"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -32,12 +32,10 @@ func setupRoutes(server *gin.Engine) {
 	server.NoRoute(routes.NotFound)
 }
 
-func setupCache() {
-	// Initialize database
-	backendDatabase := db.OpenDbWithDefaultConnectionPath()
-	// Initialize and update cache
-	cacheInstance := cache.GetCacheInstance()
-	cacheInstance.UpdateCache(backendDatabase)
+func initializeDBLocker() {
+	database := db.OpenDbWithDefaultConnectionPath()
+	dbLocker := dblocker.GetDBLockerInstance()
+	dbLocker.DB = database
 }
 
 func main() {
@@ -46,7 +44,7 @@ func main() {
 	// Initialize gin server
 	server := gin.Default()
 
-	setupCache()
+	initializeDBLocker()
 	cdn.RebuildCdn()
 	setupRoutes(server)
 

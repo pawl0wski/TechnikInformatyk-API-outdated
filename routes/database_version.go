@@ -2,10 +2,10 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pawl0wski/technikinformatyk-backend/cache"
+	dblocker "github.com/pawl0wski/technikinformatyk-backend/db_locker"
 )
 
 func DatabaseVersion(c *gin.Context) {
-	cacheInstance := cache.GetCacheInstance()
-	c.JSON(200, cacheInstance.GetDatabaseVersion())
+	dbLocker := dblocker.GetDBLockerInstance()
+	c.JSON(200, dbLocker.GetDatabaseVersion())
 }

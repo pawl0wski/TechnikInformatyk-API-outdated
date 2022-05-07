@@ -7,8 +7,8 @@ import (
 	"path"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pawl0wski/technikinformatyk-backend/cache"
 	"github.com/pawl0wski/technikinformatyk-backend/cdn"
+	dblocker "github.com/pawl0wski/technikinformatyk-backend/db_locker"
 )
 
 func Image(c *gin.Context) {
@@ -20,8 +20,8 @@ func Image(c *gin.Context) {
 		}
 		c.Redirect(http.StatusMovedPermanently, path.Join(cdnPath, fmt.Sprintf("%s.png", questionUuid)))
 	} else {
-		cacheInstance := cache.GetCacheInstance()
-		image := cacheInstance.GetImage(questionUuid)
+		dbLocker := dblocker.GetDBLockerInstance()
+		image := dbLocker.GetImage(questionUuid)
 
 		if len(image) != 0 {
 			c.Data(200, "image/png", image)

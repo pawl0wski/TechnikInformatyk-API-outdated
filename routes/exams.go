@@ -2,11 +2,11 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pawl0wski/technikinformatyk-backend/cache"
+	dblocker "github.com/pawl0wski/technikinformatyk-backend/db_locker"
 )
 
 func Exams(c *gin.Context) {
-	cacheInsance := cache.GetCacheInstance()
-	exams := cacheInsance.GetExams()
+	dbLocker := dblocker.GetDBLockerInstance()
+	exams := dbLocker.GetExams()
 	c.JSON(200, exams)
 }
