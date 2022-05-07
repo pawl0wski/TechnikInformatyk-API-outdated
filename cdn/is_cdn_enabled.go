@@ -2,8 +2,13 @@ package cdn
 
 import (
 	"os"
+	"strconv"
 )
 
 func IsCDNEnabled() bool {
-	return os.Getenv("ENABLE_CDN") == "1"
+	result, err := strconv.ParseBool(os.Getenv("ENABLE_CDN"))
+	if err != nil {
+		result = false
+	}
+	return result
 }

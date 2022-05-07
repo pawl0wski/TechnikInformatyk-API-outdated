@@ -11,3 +11,7 @@ type Question struct {
 	CorrectAnswer uint8    `json:"correctAnswer"`
 	ExamUuids     []string `json:"examUuids"`
 }
+
+func (q Question) IsEmpty() bool {
+	return q.Uuid == "" && q.Content == "" && q.AnswerA == "" && q.AnswerB == "" && q.AnswerC == "" && q.AnswerD == ""
+}
