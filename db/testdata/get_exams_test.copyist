@@ -1,0 +1,8 @@
+1=DriverOpen	1:nil
+2=ConnQuery	2:"SELECT uuid, name, description, icon FROM exam"	1:nil
+3=RowsColumns	9:["uuid","name","description","icon"]
+4=RowsNext	11:[10:ZGFlZDI3YTYtZTlmZi00NzY0LWFhOTYtMDIyMmNmNTY0ZTE5,10:RUUwOCAvIElORi4wMg,10:TW9udGHFvCBpIGVrc3Bsb2F0YWNqYSBzeXN0ZW3Ds3cga29tcHV0ZXJvd3ljaCwgdXJ6xIVkemXFhCBwZXJ5ZmVyeWpueWNoIGkgc2llY2ku,10:bWVtb3J5X291dGxpbmVk]	1:nil
+5=RowsNext	11:[10:ZThjM2QwNzItNmI3OS00YzhjLWI5ZjMtMzJlMWQ0MjFjMzFk,10:RUUwOSAvIElORi4wMw,10:UHJvZ3JhbW93YW5pZSwgdHdvcnplbmllIGkgYWRtaW5pc3Ryb3dhbmllIHN0cm9uYW1pIGludGVybmV0b3d5bWkgaSBiYXphbWkgZGFueWNoLiA,10:dGVybWluYWxfb3V0bGluZWQ]	1:nil
+6=RowsNext	11:[]	7:"EOF"
+
+"TestGetExams"=1,2,3,4,5,6
