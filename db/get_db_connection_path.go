@@ -7,10 +7,9 @@ import (
 )
 
 func GetDbConnectionPath() string {
-	connectionPath := os.Getenv("MYSQL_CONNECTION_PATH")
-	if len(connectionPath) == 0 {
+	if _, ok := os.LookupEnv("MYSQL_CONNECTION_PATH"); !ok {
 		godotenv.Load("../.env")
-		connectionPath = os.Getenv("MYSQL_CONNECTION_PATH")
 	}
+	connectionPath := os.Getenv("MYSQL_CONNECTION_PATH")
 	return connectionPath
 }
