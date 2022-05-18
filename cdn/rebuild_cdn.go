@@ -60,6 +60,7 @@ func RebuildCdn() {
 		dbLocker := dblocker.GetDBLockerInstance()
 
 		questions := getQuestionsWithImages()
+		log.Println("Coping all images to cdn folder 📷")
 		for _, question := range questions {
 
 			filePath := path.Join(os.Getenv("CDN_PATH"), fmt.Sprintf("%s.jpg", question.Uuid))
@@ -71,7 +72,8 @@ func RebuildCdn() {
 				}
 			}
 		}
+		log.Println("Creating Tar file with all question images 🗃")
 		createTarFileWithAllImages(path.Join(os.Getenv("CDN_PATH"), "images.tar"), dbLocker)
-		log.Println("CDN rebuilded")
+		log.Println("CDN rebuilded 🏗")
 	}
 }
