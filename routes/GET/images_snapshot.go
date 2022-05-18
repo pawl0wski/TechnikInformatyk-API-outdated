@@ -13,10 +13,11 @@ import (
 
 func ImagesSnapshot(c *gin.Context) {
 	if cdn.IsCDNEnabled() {
-		cdnPath := path.Join(cdn.GetCDNPath(), "images.tar")
+		cdnPath := cdn.GetCDNPath()
 		if cdnPath[0] == '.' {
 			cdnPath = cdnPath[1:]
 		}
+		cdnPath = path.Join(cdnPath, "images.tar")
 		c.Redirect(http.StatusMovedPermanently, cdnPath)
 	} else {
 		tempFile, err := os.CreateTemp(os.TempDir(), "tmp-")
