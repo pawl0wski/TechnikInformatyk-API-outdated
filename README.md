@@ -1,4 +1,4 @@
-# Technik Informatyk Backend
+![Technik Informatyk API](https://user-images.githubusercontent.com/59766830/169153125-16d783aa-9fef-4869-8421-aa007bffdc0f.jpg)
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/pawl0wski/technikinformatyk-backend)](https://goreportcard.com/report/github.com/pawl0wski/technikinformatyk-backend)
 
