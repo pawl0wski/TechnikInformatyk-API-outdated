@@ -24,7 +24,7 @@ func Image(c *gin.Context) {
 		image := dbLocker.GetImage(questionUuid)
 
 		if len(image) != 0 {
-			c.Data(200, "image/png", image)
+			c.Data(200, "image/jpeg", image)
 		} else {
 			NotFound(c)
 		}
