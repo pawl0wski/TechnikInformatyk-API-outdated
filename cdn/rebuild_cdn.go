@@ -63,7 +63,7 @@ func RebuildCdn() {
 		log.Println("Coping all images to cdn folder 📷")
 		for _, question := range questions {
 
-			filePath := path.Join(os.Getenv("CDN_PATH"), fmt.Sprintf("%s.jpg", question.Uuid))
+			filePath := path.Join(GetCDNPath(), fmt.Sprintf("%s.jpg", question.Uuid))
 			if _, err := os.Stat(filePath); err != nil {
 				image := dbLocker.GetImage(question.Uuid)
 				err := os.WriteFile(filePath, image, 0644)
@@ -73,7 +73,7 @@ func RebuildCdn() {
 			}
 		}
 		log.Println("Creating Tar file with all question images 🗃")
-		createTarFileWithAllImages(path.Join(os.Getenv("CDN_PATH"), "images.tar"), dbLocker)
+		createTarFileWithAllImages(path.Join(GetCDNPath(), "images.tar"), dbLocker)
 		log.Println("CDN rebuilded 🏗")
 	}
 }

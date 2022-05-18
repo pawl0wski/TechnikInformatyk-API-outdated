@@ -11,5 +11,6 @@ func SetupRoutes(server *gin.Engine) {
 	server.GET("/api/image/:questionUuid", GET.Image)
 	server.GET("/api/databaseVersion", GET.DatabaseVersion)
 	server.GET("/api/ping", GET.Ping)
+	server.GET("/api/imagesSnapshot", GET.ImagesSnapshot)
 	server.NoRoute(GET.NotFound)
 }
