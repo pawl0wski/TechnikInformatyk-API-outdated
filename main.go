@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/pawl0wski/technikinformatyk-backend/cdn"
-	"github.com/pawl0wski/technikinformatyk-backend/routes"
+	"github.com/pawl0wski/technikinformatyk-backend/route"
 	"log"
 	"os"
 
@@ -36,7 +36,7 @@ func main() {
 
 	initializeDBLocker()
 	cdn.RebuildCdn()
-	routes.SetupRoutes(server)
+	route.SetupRoutes(server)
 
 	// Run server
 	server.Run(fmt.Sprintf(":%s", os.Getenv("SERVER_PORT")))

@@ -1,8 +1,8 @@
-package routes
+package route
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pawl0wski/technikinformatyk-backend/routes/GET"
+	"github.com/pawl0wski/technikinformatyk-backend/route/GET"
 )
 
 func SetupRoutes(server *gin.Engine) {
