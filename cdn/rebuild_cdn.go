@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"runtime"
 )
 
 func RebuildCdn() {
@@ -34,6 +35,9 @@ func RebuildCdn() {
 		}
 		fileBuffer := bufio.NewWriter(file)
 		CreateImagesSnapshot(fileBuffer, dbLocker)
+
+		log.Println("Running garbage collector 🗑️")
+		runtime.GC()
 		log.Println("CDN rebuilded 🏗")
 	}
 }
