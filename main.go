@@ -39,6 +39,10 @@ func main() {
 	route.SetupRoutes(server)
 
 	// Run server
-	server.Run(fmt.Sprintf(":%s", os.Getenv("SERVER_PORT")))
+	serverPort := os.Getenv("SERVER_PORT")
+	if serverPort == "" {
+		serverPort = "3000"
+	}
+	server.Run(fmt.Sprintf(":%s", serverPort))
 
 }
