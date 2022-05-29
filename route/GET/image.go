@@ -18,7 +18,7 @@ func Image(c *gin.Context) {
 		if cdnPath[0] == '.' {
 			cdnPath = cdnPath[1:]
 		}
-		c.Redirect(http.StatusMovedPermanently, path.Join(cdnPath, fmt.Sprintf("%s.png", questionUuid)))
+		c.Redirect(http.StatusMovedPermanently, path.Join(cdnPath, fmt.Sprintf("%s.jpg", questionUuid)))
 	} else {
 		dbLocker := dblocker.GetDBLockerInstance()
 		image := dbLocker.GetImage(questionUuid)
