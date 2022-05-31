@@ -2,6 +2,10 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/pawl0wski/technikinformatyk-backend)](https://goreportcard.com/report/github.com/pawl0wski/technikinformatyk-backend)
 
+## Why archived
+
+I feel more at ease in JavaScript than in Go, so I decided to rewrite the api to Javascript.
+
 ## What is it?
 
 Backend to my [Technik Informatyk](https://play.google.com/store/apps/details?id=jebok.itexam) application written in GO language. It is supposed to serve a snapshot of questions and exams to the user. Another functionality is to support multiplayer quizzes using websocket.
